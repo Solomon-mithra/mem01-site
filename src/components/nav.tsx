@@ -10,6 +10,7 @@ import { cn } from "@/lib/cn";
 const links = [
   { href: "/#problem", label: "Problem" },
   { href: "/#benchmarks", label: "Benchmarks" },
+  { href: "/#use-cases", label: "Use cases" },
   { href: "/research/", label: "Research" },
   { href: "/#how", label: "System" },
   { href: "/#faq", label: "FAQ" },

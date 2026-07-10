@@ -4,6 +4,7 @@ import { Hero } from "@/components/hero";
 import { Problem } from "@/components/problem";
 import { Benchmarks } from "@/components/benchmarks";
 import { Compare } from "@/components/compare";
+import { UseCases } from "@/components/use-cases";
 import { How } from "@/components/how";
 import { Features } from "@/components/features";
 import { CodeBlock } from "@/components/code-block";
@@ -22,6 +23,7 @@ export default function Home() {
           <Problem />
           <Benchmarks />
           <Compare />
+          <UseCases />
           <How />
           <Features />
           <CodeBlock />
