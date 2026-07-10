@@ -155,7 +155,7 @@ body {
   }
 }
 
-/* Grid lines — subtle */
+/* Grid squares — centered on viewport */
 .stage-mesh {
   position: absolute;
   inset: 0;
@@ -163,16 +163,23 @@ body {
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 56px 56px;
+  background-position: center center;
   opacity: 0.7;
-  mask-image: linear-gradient(
-    to bottom,
+  mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
     black 0%,
-    black 55%,
-    transparent 100%
+    black 40%,
+    transparent 78%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    black 0%,
+    black 40%,
+    transparent 78%
   );
 }
 
-/* Glyph dots — soft */
+/* Glyph dots — same center as the grid */
 .stage-dots {
   position: absolute;
   inset: 0;
@@ -181,29 +188,41 @@ body {
     rgba(255, 255, 255, 0.18) 1.1px,
     transparent 1.25px
   );
-  background-size: 20px 20px;
+  /* Match mesh cell so dots sit on grid intersections */
+  background-size: 56px 56px;
+  background-position: center center;
   opacity: 0.65;
-  mask-image: linear-gradient(
-    to bottom,
+  mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
     black 0%,
-    black 60%,
-    transparent 100%
+    black 40%,
+    transparent 78%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 50%,
+    black 0%,
+    black 40%,
+    transparent 78%
   );
 }
 
+/* Floor perspective — origin at horizontal center */
 .stage-floor {
   position: absolute;
-  left: -10%;
-  right: -10%;
+  left: 50%;
   bottom: -5%;
-  height: 55vh;
+  width: 140%;
+  height: 50vh;
+  margin-left: -70%;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 80px 80px;
+  background-position: center top;
   transform: perspective(600px) rotateX(58deg);
   transform-origin: center top;
   mask-image: linear-gradient(to bottom, black 0%, transparent 75%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 75%);
   opacity: 0.45;
 }
 
