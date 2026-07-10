@@ -88,13 +88,13 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(215, 25, 33, 0.75) 0%,
-    rgba(215, 25, 33, 0.4) 28%,
-    rgba(215, 25, 33, 0.12) 52%,
+    rgba(215, 25, 33, 0.38) 0%,
+    rgba(215, 25, 33, 0.18) 28%,
+    rgba(215, 25, 33, 0.05) 52%,
     transparent 70%
   );
-  filter: blur(48px);
-  opacity: 1;
+  filter: blur(52px);
+  opacity: 0.85;
 }
 
 .stage-orb-wrap-a {
@@ -155,15 +155,15 @@ body {
   }
 }
 
-/* Grid lines — clearly visible */
+/* Grid lines — subtle */
 .stage-mesh {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 56px 56px;
-  opacity: 1;
+  opacity: 0.7;
   mask-image: linear-gradient(
     to bottom,
     black 0%,
@@ -172,17 +172,17 @@ body {
   );
 }
 
-/* Glyph dots — high contrast */
+/* Glyph dots — soft */
 .stage-dots {
   position: absolute;
   inset: 0;
   background-image: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.55) 1.25px,
-    transparent 1.35px
+    rgba(255, 255, 255, 0.18) 1.1px,
+    transparent 1.25px
   );
   background-size: 20px 20px;
-  opacity: 1;
+  opacity: 0.65;
   mask-image: linear-gradient(
     to bottom,
     black 0%,
@@ -198,13 +198,13 @@ body {
   bottom: -5%;
   height: 55vh;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 80px 80px;
   transform: perspective(600px) rotateX(58deg);
   transform-origin: center top;
   mask-image: linear-gradient(to bottom, black 0%, transparent 75%);
-  opacity: 0.75;
+  opacity: 0.45;
 }
 
 .stage-noise {
