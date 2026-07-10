@@ -153,48 +153,78 @@ body {
   color: #fff;
 }
 
-/* Footer mega wordmark — huge red, fades out (Linear / Stripe style) */
+/* Footer mega wordmark — huge grainy red, fades out */
 .footer-mega-wrap {
   overflow: hidden;
-  line-height: 0.75;
+  line-height: 0.72;
+  padding: 0.25rem 0 0;
   /* Soft fade at bottom edge of the word */
   mask-image: linear-gradient(
     to bottom,
     black 0%,
-    black 35%,
-    transparent 95%
+    black 28%,
+    transparent 92%
   );
   -webkit-mask-image: linear-gradient(
     to bottom,
     black 0%,
-    black 35%,
-    transparent 95%
+    black 28%,
+    transparent 92%
   );
 }
 
 .footer-mega-word {
+  position: relative;
   margin: 0;
   width: 100%;
   text-align: center;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-weight: 700;
-  font-size: clamp(4.5rem, 22vw, 14rem);
-  letter-spacing: -0.06em;
-  line-height: 0.8;
-  /* Red → transparent vertical gradient fill */
-  background: linear-gradient(
-    180deg,
-    #d71921 0%,
-    #d71921 22%,
-    rgba(215, 25, 33, 0.45) 55%,
-    rgba(215, 25, 33, 0.08) 82%,
-    transparent 100%
-  );
+  /* Larger — less padding around it */
+  font-size: clamp(5.5rem, 28vw, 18rem);
+  letter-spacing: -0.07em;
+  line-height: 0.78;
+  /* Grain noise + red fade (clipped to glyphs) */
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    linear-gradient(
+      180deg,
+      #e01e28 0%,
+      #d71921 18%,
+      rgba(215, 25, 33, 0.55) 48%,
+      rgba(215, 25, 33, 0.12) 78%,
+      transparent 100%
+    );
+  background-size: 140px 140px, 100% 100%;
+  background-repeat: repeat, no-repeat;
+  background-blend-mode: soft-light, normal;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
   user-select: none;
+  pointer-events: none;
+}
+
+/* Extra grain layer for stronger film texture */
+.footer-mega-word::after {
+  content: "mem01";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
   pointer-events: none;
 }
 
