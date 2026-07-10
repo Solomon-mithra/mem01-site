@@ -2,6 +2,7 @@ import { Nav } from "@/components/nav";
 import { SiteBackground } from "@/components/site-background";
 import { Hero } from "@/components/hero";
 import { Problem } from "@/components/problem";
+import { Benchmarks } from "@/components/benchmarks";
 import { Compare } from "@/components/compare";
 import { How } from "@/components/how";
 import { Features } from "@/components/features";
@@ -19,6 +20,7 @@ export default function Home() {
         <main className="flex-1 pt-2">
           <Hero />
           <Problem />
+          <Benchmarks />
           <Compare />
           <How />
           <Features />
