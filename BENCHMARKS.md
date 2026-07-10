@@ -49,7 +49,7 @@ Per conversation, v0.2 ranged 67.9% (conv-49, the hardest) to 84.9%, average acr
 
 ## The one-liner
 
-A solo, self-hosted belief-memory engine reached 77.9% on the incumbent's own published LoCoMo methodology (2.5x its baseline) on a cheaper model tier, while beating that incumbent's OSS version 100% to 40% on the staleness and conflict handling it was designed for.
+A solo, self-hosted belief-memory engine reached 80.5% on the incumbent's own published LoCoMo methodology (2.5x its baseline), using a mean of 1,252 context tokens per query against the incumbent's published 6,956 and zero LLM calls on reads, on a cheaper model tier, while beating that incumbent's OSS version 100% to 40% on the staleness and conflict handling it was designed for.
 
 ## v0.3 update (July 10, 2026)
 
@@ -66,10 +66,12 @@ What changed in v0.3: multi-signal retrieval inside mem01 (lexical + entity sear
 
 **Measured telemetry (Postgres, 1,547 recalls):** recall latency p50 442ms, p95 913ms (includes the embedding API call); packed context mean **1,252 tokens** (max 3,213) under a 6,500 cap. For scale: mem0's published 92.5 runs at a mean of 6,956 retrieval tokens. mem01 reached 80.5% using under a fifth of that context per query, with zero LLM calls on reads. Accuracy at low token cost is the design goal, and now it is a measured trade-off, not a claim.
 
-## Roadmap to 90+
+## Roadmap to 90+ (v0.4)
 
-1. gpt-4o-class answerer and judge, one run, zero code (parked until credits allow)
-2. Multi-signal retrieval: semantic + keyword + entity fusion
-3. Diversity-aware ranking (MMR) for multi-hop list questions
-4. Structured `valid_from` dates on beliefs, chronological presentation
-5. Session-level extraction to lift the granularity ceiling
+Shipped in v0.3: multi-signal retrieval (lexical + entity + vector via reciprocal rank fusion), MMR diversity, session-level extraction windows, evidence-mode judging, Postgres-store eval with telemetry.
+
+1. Two-pass extraction: a second specifics sweep per session, lifting the diagnosed single-hop ceiling (one extraction call drops tail details in long sessions)
+2. gpt-4o-class answerer and judge, one run, zero code: model parity with mem0's reference setup
+3. Lexical search into SQL (tsvector): the v0.3 lexical pass scans in-scope rows, fine at eval scale, indexed at production scale
+4. Structured `valid_from` dates on beliefs, enabling real temporal queries
+5. Async write queue so agents never wait on memory (notably also on mem0's public roadmap)
