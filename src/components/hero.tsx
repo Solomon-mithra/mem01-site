@@ -12,7 +12,7 @@ export function Hero() {
             Self-hosted · Belief memory · Open source
           </div>
 
-          <p className="mb-4 font-mono text-[12px] tracking-[0.2em] uppercase text-muted-dim">
+          <p className="mb-4 font-mono text-[12px] tracking-[0.2em] uppercase text-white/80">
             mem01 ( agent memory )
           </p>
 
@@ -53,7 +53,7 @@ export function Hero() {
             </a>
           </div>
 
-          <p className="mt-5 font-mono text-[11px] tracking-wide text-muted-dim">
+          <p className="mt-5 font-mono text-[11px] tracking-wide text-white/70">
             $ {site.dockerOneLiner}
           </p>
         </div>

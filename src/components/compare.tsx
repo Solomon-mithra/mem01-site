@@ -99,10 +99,12 @@ export function Compare() {
           <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
             Why mem01
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted">
+          <p className="mt-5 text-base leading-relaxed text-white">
             mem0 wins on cloud polish. Zep wins on graph depth. mem01 wins when
             you need{" "}
-            <span className="text-white">correct beliefs under evolution</span>
+            <span className="font-medium text-white">
+              correct beliefs under evolution
+            </span>
             , self-hosted, lean recall.
           </p>
         </div>
@@ -151,7 +153,7 @@ export function Compare() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 font-mono text-[10px] tracking-wide text-muted-dim">
+        <p className="mt-3 font-mono text-[10px] tracking-wide text-white/70">
           ● yes · — partial · × no · from public docs / positioning
         </p>
 

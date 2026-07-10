@@ -30,7 +30,7 @@ export function Problem() {
             <br />
             becomes wrong
           </h2>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-muted">
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-white">
             Users change their minds. Agents that remember everything end up
             remembering the past louder than the present.
           </p>

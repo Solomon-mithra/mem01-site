@@ -16,7 +16,7 @@ export function Cta() {
               <br />
               remember right
             </h2>
-            <p className="mx-auto mt-5 max-w-md text-muted">
+            <p className="mx-auto mt-5 max-w-md text-white">
               Clone the repo. Compose up. Call remember and recall.
             </p>
             <a

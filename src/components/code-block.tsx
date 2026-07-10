@@ -29,21 +29,21 @@ export function CodeBlock() {
               <br />
               to ship
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted">
+            <p className="mt-5 text-base leading-relaxed text-white">
               HTTP + Python SDK.{" "}
-              <code className="rounded bg-card px-1.5 py-0.5 font-mono text-sm text-accent">
+              <code className="rounded bg-black/50 px-1.5 py-0.5 font-mono text-sm text-accent">
                 remember
               </code>{" "}
               extracts beliefs;{" "}
-              <code className="rounded bg-card px-1.5 py-0.5 font-mono text-sm text-accent">
+              <code className="rounded bg-black/50 px-1.5 py-0.5 font-mono text-sm text-accent">
                 recall
               </code>{" "}
               returns a budgeted context string. Also{" "}
-              <code className="rounded bg-card px-1.5 py-0.5 font-mono text-sm text-foreground/80">
+              <code className="rounded bg-black/50 px-1.5 py-0.5 font-mono text-sm text-white/80">
                 correct
               </code>{" "}
               and{" "}
-              <code className="rounded bg-card px-1.5 py-0.5 font-mono text-sm text-foreground/80">
+              <code className="rounded bg-black/50 px-1.5 py-0.5 font-mono text-sm text-white/80">
                 forget
               </code>{" "}
               when humans need to fix the model.
