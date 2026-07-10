@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+/*
+  Nothing mono + pure red accent.
+  Hex is inlined in @theme so Tailwind utilities never pick up a stale saffron value.
+*/
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #8a8a8a;
+  --muted-dim: #555555;
+  --card: #0a0a0a;
+  --card-hover: #111111;
+  --border: #1c1c1c;
+  --border-bright: #333333;
+  --accent: #d71921;
+  --accent-dim: #a8141a;
+  --accent-soft: rgba(215, 25, 33, 0.14);
+  --danger: #a3a3a3;
+  --danger-soft: rgba(255, 255, 255, 0.06);
+  --ok: #ffffff;
+  --ok-soft: rgba(255, 255, 255, 0.08);
+  --warn: #c4c4c4;
+}
+
+@theme inline {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-muted: #8a8a8a;
+  --color-muted-dim: #555555;
+  --color-card: #0a0a0a;
+  --color-card-hover: #111111;
+  --color-border: #1c1c1c;
+  --color-border-bright: #333333;
+  --color-accent: #d71921;
+  --color-accent-dim: #a8141a;
+  --color-accent-soft: #d7192124;
+  --color-danger: #a3a3a3;
+  --color-danger-soft: #ffffff0f;
+  --color-ok: #ffffff;
+  --color-ok-soft: #ffffff14;
+  --color-warn: #c4c4c4;
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-display), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ——— Site stage ——— */
+.site-stage {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.stage-glow {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 70vh;
+  background:
+    radial-gradient(
+      ellipse 55% 50% at 50% 0%,
+      rgba(215, 25, 33, 0.18),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 40% 35% at 18% 25%,
+      rgba(255, 255, 255, 0.06),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 35% 30% at 82% 20%,
+      rgba(215, 25, 33, 0.1),
+      transparent 55%
+    );
+}
+
+.stage-mesh {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(
+    ellipse 90% 70% at 50% 15%,
+    black 0%,
+    transparent 75%
+  );
+}
+
+.stage-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.11) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+  mask-image: radial-gradient(
+    ellipse 75% 55% at 50% 12%,
+    black 5%,
+    transparent 72%
+  );
+}
+
+.stage-floor {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -5%;
+  height: 55vh;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(600px) rotateX(58deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 75%);
+  opacity: 0.55;
+}
+
+.stage-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.stage-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.45;
+  animation: orb-drift 18s ease-in-out infinite;
+}
+
+.stage-orb-a {
+  width: 340px;
+  height: 340px;
+  top: 8%;
+  left: 8%;
+  background: rgba(215, 25, 33, 0.22);
+}
+
+.stage-orb-b {
+  width: 280px;
+  height: 280px;
+  top: 18%;
+  right: 6%;
+  background: rgba(255, 255, 255, 0.07);
+  animation-delay: -7s;
+  animation-duration: 22s;
+}
+
+.stage-orb-c {
+  width: 220px;
+  height: 220px;
+  bottom: 22%;
+  left: 40%;
+  background: rgba(215, 25, 33, 0.12);
+  animation-delay: -12s;
+  animation-duration: 26s;
+}
+
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(18px, -22px) scale(1.05);
+  }
+  66% {
+    transform: translate(-14px, 12px) scale(0.96);
+  }
+}
+
+.glyph-dots-dense {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.09) 0.8px,
+    transparent 0.8px
+  );
+  background-size: 10px 10px;
+}
+
+.frame {
+  border: 1px solid #333333;
+}
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.display-xl {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.signal {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #d71921;
+  box-shadow: 0 0 0 0 rgba(215, 25, 33, 0.5);
+  animation: signal-pulse 2.4s ease-out infinite;
+}
+
+@keyframes signal-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(215, 25, 33, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(215, 25, 33, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(215, 25, 33, 0);
+  }
+}
+
+::selection {
+  background: #d71921;
+  color: #fff;
+}
+
+/* Force Tailwind accent utilities to pure red (overrides any stale theme) */
+.text-accent {
+  color: #d71921 !important;
+}
+.bg-accent {
+  background-color: #d71921 !important;
+}
+.border-accent {
+  border-color: #d71921 !important;
+}
+.hover\:bg-accent:hover {
+  background-color: #d71921 !important;
+}
+.hover\:text-accent:hover {
+  color: #d71921 !important;
+}
+.hover\:border-accent:hover {
+  border-color: #d71921 !important;
+}
