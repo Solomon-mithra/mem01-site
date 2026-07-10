@@ -19,7 +19,7 @@ export function SiteBackground() {
         softness={0.5}
         intensity={0.5}
         noise={0.25}
-        shape="corners"
+        shape="sphere"
         speed={1}
         scale={1}
         rotation={0}
