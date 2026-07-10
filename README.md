@@ -1,12 +1,15 @@
 # mem01-site
 
-Marketing landing page for [mem01](../mem01) — self-hosted belief memory for AI agents.
+Marketing landing page for mem01 — self-hosted belief memory for AI agents.
+
+**Live:** [https://solomon-mithra.github.io/mem01-site/](https://solomon-mithra.github.io/mem01-site/)
 
 ## Stack
 
-- [Next.js](https://nextjs.org) (App Router)
+- [Next.js](https://nextjs.org) (App Router) static export
 - [Tailwind CSS](https://tailwindcss.com) v4
 - [lucide-react](https://lucide.dev) icons
+- GitHub Pages via Actions (`.github/workflows/deploy-pages.yml`)
 
 ## Develop
 
