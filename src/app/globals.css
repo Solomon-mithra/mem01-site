@@ -60,7 +60,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ——— Site stage ——— */
+/* ——— Premium stage: atmosphere only (Linear / Nothing quiet) ——— */
 .site-stage {
   pointer-events: none;
   position: fixed;
@@ -70,15 +70,23 @@ body {
   background: #000;
 }
 
-/*
-  Animate the WRAPPER (transform only).
-  Blur lives on the INNER blob — filter + transform on same node
-  often freezes / flattens motion in WebKit/Chromium.
-*/
+/* Soft edge vignette — depth without clutter */
+.stage-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 65% at 50% 40%,
+    transparent 0%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* Red glows — slow, soft, restrained */
 .stage-orb-wrap {
   position: absolute;
-  width: min(80vw, 640px);
-  height: min(80vw, 640px);
+  width: min(90vw, 720px);
+  height: min(90vw, 720px);
   will-change: transform;
 }
 
@@ -88,63 +96,49 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(215, 25, 33, 0.38) 0%,
-    rgba(215, 25, 33, 0.18) 28%,
-    rgba(215, 25, 33, 0.05) 52%,
+    rgba(215, 25, 33, 0.28) 0%,
+    rgba(215, 25, 33, 0.1) 32%,
+    rgba(215, 25, 33, 0.02) 55%,
     transparent 70%
   );
-  filter: blur(52px);
-  opacity: 0.85;
+  filter: blur(64px);
+  opacity: 1;
 }
 
 .stage-orb-wrap-a {
-  top: -12%;
-  left: -10%;
-  animation: orb-drift-a 12s linear infinite;
+  top: -18%;
+  left: 50%;
+  margin-left: min(-45vw, -360px);
+  animation: orb-drift-a 28s ease-in-out infinite;
 }
 
 .stage-orb-wrap-b {
-  top: 8%;
-  right: -14%;
-  width: min(75vw, 580px);
-  height: min(75vw, 580px);
-  animation: orb-drift-b 16s linear infinite;
-  animation-delay: -6s;
+  top: 35%;
+  right: -20%;
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  animation: orb-drift-b 34s ease-in-out infinite;
+  animation-delay: -12s;
+  opacity: 0.7;
 }
 
 @keyframes orb-drift-a {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  25% {
-    transform: translate3d(22vw, 18vh, 0) scale(1.15);
-  }
-  50% {
-    transform: translate3d(12vw, 40vh, 0) scale(0.9);
-  }
-  75% {
-    transform: translate3d(-8vw, 22vh, 0) scale(1.1);
-  }
+  0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4vw, 6vh, 0) scale(1.06);
   }
 }
 
 @keyframes orb-drift-b {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1.1);
-  }
-  25% {
-    transform: translate3d(-20vw, 22vh, 0) scale(0.88);
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(-14vw, 42vh, 0) scale(1.2);
-  }
-  75% {
-    transform: translate3d(6vw, 12vh, 0) scale(1);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.1);
+    transform: translate3d(-5vw, -4vh, 0) scale(1.08);
   }
 }
 
@@ -155,67 +149,38 @@ body {
   }
 }
 
-/*
-  Each cell = square outline + 6 dots inside (2×3).
-  SVG tile, centered on viewport.
-*/
-.stage-cells {
+/* Single ultra-fine horizontal rule feel — barely there structure */
+.stage-hairline {
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none'%3E%3Crect x='0.5' y='0.5' width='63' height='63' stroke='white' stroke-opacity='0.09'/%3E%3Ccircle cx='20' cy='22' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='32' cy='22' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='44' cy='22' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='20' cy='42' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='32' cy='42' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='44' cy='42' r='1.6' fill='white' fill-opacity='0.22'/%3E%3C/svg%3E");
-  background-size: 64px 64px;
-  background-position: center center;
-  background-repeat: repeat;
-  opacity: 0.9;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent calc(50% - 0.5px),
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent calc(50% + 0.5px),
+    transparent 100%
+  );
   mask-image: radial-gradient(
-    ellipse 85% 75% at 50% 50%,
-    black 0%,
-    black 42%,
-    transparent 78%
+    ellipse 60% 40% at 50% 50%,
+    black,
+    transparent 70%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 85% 75% at 50% 50%,
-    black 0%,
-    black 42%,
-    transparent 78%
+    ellipse 60% 40% at 50% 50%,
+    black,
+    transparent 70%
   );
 }
 
-/* Floor perspective — origin at horizontal center */
-.stage-floor {
-  position: absolute;
-  left: 50%;
-  bottom: -5%;
-  width: 140%;
-  height: 50vh;
-  margin-left: -70%;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: center top;
-  transform: perspective(600px) rotateX(58deg);
-  transform-origin: center top;
-  mask-image: linear-gradient(to bottom, black 0%, transparent 75%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 75%);
-  opacity: 0.45;
-}
-
+/* Film grain — premium texture, almost invisible */
 .stage-noise {
   position: absolute;
   inset: 0;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
-
-.glyph-dots-dense {
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.09) 0.8px,
-    transparent 0.8px
-  );
-  background-size: 10px 10px;
+  opacity: 0.028;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 .frame {
