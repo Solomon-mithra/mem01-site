@@ -5,20 +5,20 @@ type LogoProps = {
   size?: "md" | "lg";
 };
 
-/** Text-only wordmark: mem (regular) + 01 (bold red). */
+/** Text-only wordmark: mem (regular) + 01 (extra bold red). */
 export function Logo({ className, size = "lg" }: LogoProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-baseline font-mono leading-none tracking-[-0.04em] text-white",
-        size === "lg" && "text-[1.85rem] sm:text-[2.1rem]",
-        size === "md" && "text-[1.5rem]",
+        "inline-flex items-baseline font-mono leading-none tracking-[-0.03em] text-white",
+        size === "lg" && "text-[1.15rem] sm:text-[1.25rem]",
+        size === "md" && "text-[1.05rem]",
         className,
       )}
       aria-label="mem01"
     >
-      <span className="font-normal text-white/85">mem</span>
-      <span className="font-bold text-accent">01</span>
+      <span className="font-normal text-white/80">mem</span>
+      <span className="font-extrabold text-accent">01</span>
     </span>
   );
 }
