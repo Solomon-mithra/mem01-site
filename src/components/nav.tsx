@@ -1,4 +1,5 @@
 import { GitHubIcon } from "@/components/icons";
+import { Logo } from "@/components/logo";
 import { site } from "@/lib/site";
 
 const links = [
@@ -11,14 +12,9 @@ const links = [
 export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-black/80 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-6">
-        <a href="#" className="flex items-center gap-3">
-          <span className="font-mono text-[13px] font-medium tracking-[0.12em] uppercase">
-            mem<span className="text-accent">01</span>
-          </span>
-          <span className="hidden font-mono text-[10px] tracking-[0.16em] text-muted-dim sm:inline">
-            ( open )
-          </span>
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
+        <a href="#" className="flex items-center" aria-label="mem01 home">
+          <Logo size="lg" />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">

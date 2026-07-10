@@ -1,3 +1,4 @@
+import { Logo } from "@/components/logo";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -5,9 +6,7 @@ export function Footer() {
     <footer className="border-t border-border py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 sm:flex-row sm:items-center sm:px-6">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[12px] tracking-[0.12em] uppercase text-white">
-            mem<span className="text-accent">01</span>
-          </span>
+          <Logo size="md" />
           <span className="font-mono text-[10px] tracking-[0.14em] text-muted-dim">
             MIT
           </span>
