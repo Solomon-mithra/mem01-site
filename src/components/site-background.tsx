@@ -15,19 +15,20 @@ export function SiteBackground() {
         width="100%"
         height="100%"
         fit="cover"
-        colors={["#d71921", "#ff4d6a", "#5c0a0e", "#ff8a80"]}
+        /* Deeper / muted reds — less neon bloom */
+        colors={["#9e1218", "#c43a3a", "#2a080a", "#6b1a1e"]}
         colorBack="#000000"
-        softness={0.5}
-        intensity={0.5}
-        noise={0.25}
+        softness={0.65}
+        intensity={0.28}
+        noise={0.18}
         shape="corners"
-        speed={1}
+        speed={0.55}
         scale={1}
         rotation={0}
         offsetX={0}
         offsetY={0}
       />
-      {/* Readability veil so content stays crisp */}
+      {/* Stronger veil — keeps glow in the background */}
       <div className="stage-readability" />
     </div>
   );
