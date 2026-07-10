@@ -26,7 +26,7 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-white sm:text-lg">
             Self-hosted memory for AI agents that updates when the truth
             changes — so they don&apos;t keep acting on yesterday&apos;s facts.
           </p>
