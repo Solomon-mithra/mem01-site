@@ -19,9 +19,9 @@ export function SiteBackground() {
         colors={["#9e1218", "#c43a3a", "#2a080a", "#6b1a1e"]}
         colorBack="#000000"
         softness={0.65}
-        intensity={0.28}
-        noise={0.18}
-        shape="corners"
+        intensity={0.50}
+        noise={0.30}
+        shape="sphere"
         speed={0.55}
         scale={1}
         rotation={0}
