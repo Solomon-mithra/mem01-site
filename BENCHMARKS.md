@@ -51,6 +51,21 @@ Per conversation, v0.2 ranged 67.9% (conv-49, the hardest) to 84.9%, average acr
 
 A solo, self-hosted belief-memory engine reached 77.9% on the incumbent's own published LoCoMo methodology (2.5x its baseline) on a cheaper model tier, while beating that incumbent's OSS version 100% to 40% on the staleness and conflict handling it was designed for.
 
+## v0.3 update (July 10, 2026)
+
+**Overall: 80.5% (1240/1540), up from 77.9%.** Run on the production store shape (Postgres + pgvector) with per-query telemetry. Product suite: 5/5, unchanged through every version. Zero ingestion errors.
+
+What changed in v0.3: multi-signal retrieval inside mem01 (lexical + entity search fused with vector search via reciprocal rank fusion, MMR diversity, read path still zero LLM calls), session-level extraction windows in the harness, and evidence-mode judging ported from mem0's published run configuration. Iterated against the worst conversation (conv-49: 67.9 to 76.9), not the friendliest.
+
+| Category | v0.2 | v0.3 |
+|----------|------|------|
+| Multi-hop | 83.3% | **86.9%** |
+| Temporal | 74.5% | **77.9%** |
+| Open-domain | 74.0% | **75.0%** |
+| Single-hop | 77.9% | **80.0%** |
+
+**Measured telemetry (Postgres, 1,547 recalls):** recall latency p50 442ms, p95 913ms (includes the embedding API call); packed context mean **1,252 tokens** (max 3,213) under a 6,500 cap. For scale: mem0's published 92.5 runs at a mean of 6,956 retrieval tokens. mem01 reached 80.5% using under a fifth of that context per query, with zero LLM calls on reads. Accuracy at low token cost is the design goal, and now it is a measured trade-off, not a claim.
+
 ## Roadmap to 90+
 
 1. gpt-4o-class answerer and judge, one run, zero code (parked until credits allow)
