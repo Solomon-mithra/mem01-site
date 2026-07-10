@@ -60,7 +60,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ——— Premium stage: atmosphere only (Linear / Nothing quiet) ——— */
+/* ——— Paper GrainGradient stage ——— */
 .site-stage {
   pointer-events: none;
   position: fixed;
@@ -70,117 +70,38 @@ body {
   background: #000;
 }
 
-/* Soft edge vignette — depth without clutter */
-.stage-vignette {
+.stage-shader {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Soft dark veil so type stays readable over the shader */
+.stage-readability {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 75% 65% at 50% 40%,
-    transparent 0%,
-    transparent 45%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
-}
-
-/* Red glows — slow, soft, restrained */
-.stage-orb-wrap {
-  position: absolute;
-  width: min(90vw, 720px);
-  height: min(90vw, 720px);
-  will-change: transform;
-}
-
-.stage-orb-blob {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(215, 25, 33, 0.28) 0%,
-    rgba(215, 25, 33, 0.1) 32%,
-    rgba(215, 25, 33, 0.02) 55%,
-    transparent 70%
-  );
-  filter: blur(64px);
-  opacity: 1;
-}
-
-.stage-orb-wrap-a {
-  top: -18%;
-  left: 50%;
-  margin-left: min(-45vw, -360px);
-  animation: orb-drift-a 28s ease-in-out infinite;
-}
-
-.stage-orb-wrap-b {
-  top: 35%;
-  right: -20%;
-  width: min(70vw, 520px);
-  height: min(70vw, 520px);
-  animation: orb-drift-b 34s ease-in-out infinite;
-  animation-delay: -12s;
-  opacity: 0.7;
-}
-
-@keyframes orb-drift-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(4vw, 6vh, 0) scale(1.06);
-  }
-}
-
-@keyframes orb-drift-b {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-5vw, -4vh, 0) scale(1.08);
-  }
+  background:
+    radial-gradient(
+      ellipse 80% 70% at 50% 35%,
+      transparent 0%,
+      rgba(0, 0, 0, 0.35) 70%,
+      rgba(0, 0, 0, 0.65) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.15) 0%,
+      transparent 30%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stage-orb-wrap-a,
-  .stage-orb-wrap-b {
-    animation: none;
+  .stage-shader {
+    /* Shader still renders a frame; speed is set in component */
   }
-}
-
-/* Single ultra-fine horizontal rule feel — barely there structure */
-.stage-hairline {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent calc(50% - 0.5px),
-    rgba(255, 255, 255, 0.04) 50%,
-    transparent calc(50% + 0.5px),
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 60% 40% at 50% 50%,
-    black,
-    transparent 70%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 60% 40% at 50% 50%,
-    black,
-    transparent 70%
-  );
-}
-
-/* Film grain — premium texture, almost invisible */
-.stage-noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.028;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
 }
 
 .frame {

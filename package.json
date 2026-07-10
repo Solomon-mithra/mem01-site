@@ -10,6 +10,7 @@
     "export": "GITHUB_PAGES=true npm run build"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.77",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
     "next": "16.2.10",
