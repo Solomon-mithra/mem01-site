@@ -18,20 +18,27 @@ function GrainBar({
       <span className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-wider text-white/50">
         {label}
       </span>
-      <div className="relative h-8 flex-1 overflow-hidden rounded-sm border border-white/15 bg-white/[0.04]">
+      <div className="relative h-8 flex-1 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
         <div
           className={cn(
             "absolute inset-y-0 left-0",
-            variant === "v02" ? "bg-accent" : "bg-[#5c5c5c]",
+            variant === "v02" ? "bg-[#8a1218]" : "bg-[#3a3a3a]",
           )}
-          style={{ width: `${pct}%` }}
+          style={{ width: `${pct}%`, opacity: 0.85 }}
         >
-          {/* grain texture on top of solid fill */}
+          {/* heavy film grain */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-40 mix-blend-soft-light"
+            className="pointer-events-none absolute inset-0 opacity-70 mix-blend-overlay"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 120 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-              backgroundSize: "80px 40px",
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 120 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+              backgroundSize: "56px 28px",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-50 mix-blend-soft-light"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 80 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E")`,
+              backgroundSize: "90px 40px",
             }}
           />
         </div>
@@ -79,11 +86,19 @@ export function Benchmarks() {
               {overall.v0.frac} correct
             </p>
             {/* overall bar */}
-            <div className="mt-5 h-3 overflow-hidden rounded-sm border border-white/10 bg-white/[0.04]">
+            <div className="mt-5 h-3 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
               <div
-                className="h-full bg-[#5c5c5c]"
+                className="relative h-full bg-[#3a3a3a] opacity-85"
                 style={{ width: `${overall.v0.pct}%` }}
-              />
+              >
+                <div
+                  className="absolute inset-0 opacity-65 mix-blend-overlay"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 80 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                    backgroundSize: "48px 20px",
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div className="relative overflow-hidden bg-black/80 p-6 backdrop-blur-sm sm:p-8">
@@ -105,11 +120,19 @@ export function Benchmarks() {
               <p className="mt-2 font-mono text-xs text-white/60">
                 {overall.v02.frac} correct · +46.2 pts
               </p>
-              <div className="mt-5 h-3 overflow-hidden rounded-sm border border-accent/30 bg-white/[0.04]">
+              <div className="mt-5 h-3 overflow-hidden rounded-sm border border-accent/20 bg-white/[0.03]">
                 <div
-                  className="h-full bg-accent"
+                  className="relative h-full bg-[#8a1218] opacity-90"
                   style={{ width: `${overall.v02.pct}%` }}
-                />
+                >
+                  <div
+                    className="absolute inset-0 opacity-70 mix-blend-overlay"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 80 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                      backgroundSize: "48px 20px",
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

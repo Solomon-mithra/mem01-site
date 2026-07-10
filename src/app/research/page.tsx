@@ -21,20 +21,27 @@ function GrainBar({
 }) {
   const pct = Math.min(100, Math.max(2, value));
   return (
-    <div className="relative h-8 flex-1 overflow-hidden rounded-sm border border-white/15 bg-white/[0.04]">
+    <div className="relative h-8 flex-1 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
       <div
         className={
           variant === "v02"
-            ? "absolute inset-y-0 left-0 bg-accent"
-            : "absolute inset-y-0 left-0 bg-[#5c5c5c]"
+            ? "absolute inset-y-0 left-0 bg-[#8a1218] opacity-85"
+            : "absolute inset-y-0 left-0 bg-[#3a3a3a] opacity-85"
         }
         style={{ width: `${pct}%` }}
       >
         <div
-          className="pointer-events-none absolute inset-0 opacity-40 mix-blend-soft-light"
+          className="pointer-events-none absolute inset-0 opacity-70 mix-blend-overlay"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 120 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundSize: "80px 40px",
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 120 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: "56px 28px",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 opacity-50 mix-blend-soft-light"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 80 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E")`,
+            backgroundSize: "90px 40px",
           }}
         />
       </div>
