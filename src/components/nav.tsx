@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { GitHubIcon } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import { site } from "@/lib/site";
@@ -28,12 +27,6 @@ export function Nav() {
               {l.label}
             </a>
           ))}
-          <Link
-            href="/benchmarks"
-            className="font-mono text-[11px] tracking-[0.14em] uppercase text-muted transition-colors hover:text-white"
-          >
-            Benchmarks
-          </Link>
         </nav>
 
         <a
