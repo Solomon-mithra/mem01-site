@@ -155,53 +155,28 @@ body {
   }
 }
 
-/* Grid squares — centered on viewport */
-.stage-mesh {
+/*
+  Each cell = square outline + 6 dots inside (2×3).
+  SVG tile, centered on viewport.
+*/
+.stage-cells {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none'%3E%3Crect x='0.5' y='0.5' width='63' height='63' stroke='white' stroke-opacity='0.09'/%3E%3Ccircle cx='20' cy='22' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='32' cy='22' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='44' cy='22' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='20' cy='42' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='32' cy='42' r='1.6' fill='white' fill-opacity='0.22'/%3E%3Ccircle cx='44' cy='42' r='1.6' fill='white' fill-opacity='0.22'/%3E%3C/svg%3E");
+  background-size: 64px 64px;
   background-position: center center;
-  opacity: 0.7;
+  background-repeat: repeat;
+  opacity: 0.9;
   mask-image: radial-gradient(
     ellipse 85% 75% at 50% 50%,
     black 0%,
-    black 40%,
+    black 42%,
     transparent 78%
   );
   -webkit-mask-image: radial-gradient(
     ellipse 85% 75% at 50% 50%,
     black 0%,
-    black 40%,
-    transparent 78%
-  );
-}
-
-/* Glyph dots — same center as the grid */
-.stage-dots {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.18) 1.1px,
-    transparent 1.25px
-  );
-  /* Match mesh cell so dots sit on grid intersections */
-  background-size: 56px 56px;
-  background-position: center center;
-  opacity: 0.65;
-  mask-image: radial-gradient(
-    ellipse 85% 75% at 50% 50%,
-    black 0%,
-    black 40%,
-    transparent 78%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 85% 75% at 50% 50%,
-    black 0%,
-    black 40%,
+    black 42%,
     transparent 78%
   );
 }
