@@ -271,6 +271,51 @@ body {
   color: #fff;
 }
 
+/* Footer mega wordmark — huge red, fades out (Linear / Stripe style) */
+.footer-mega-wrap {
+  overflow: hidden;
+  line-height: 0.75;
+  /* Soft fade at bottom edge of the word */
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 35%,
+    transparent 95%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 35%,
+    transparent 95%
+  );
+}
+
+.footer-mega-word {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 700;
+  font-size: clamp(4.5rem, 22vw, 14rem);
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  /* Red → transparent vertical gradient fill */
+  background: linear-gradient(
+    180deg,
+    #d71921 0%,
+    #d71921 22%,
+    rgba(215, 25, 33, 0.45) 55%,
+    rgba(215, 25, 33, 0.08) 82%,
+    transparent 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
 /* Force Tailwind accent utilities to pure red (overrides any stale theme) */
 .text-accent {
   color: #d71921 !important;
