@@ -18,7 +18,7 @@ export function Logo({ className, size = "lg" }: LogoProps) {
       aria-label="mem01"
     >
       <span className="font-normal text-white/80">mem</span>
-      <span className="font-extrabold text-accent">01</span>
+      <span className="font-bold text-accent">01</span>
     </span>
   );
 }
