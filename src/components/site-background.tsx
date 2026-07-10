@@ -4,7 +4,7 @@ import { GrainGradient } from "@paper-design/shaders-react";
 
 /**
  * Paper Design GrainGradient — vivid mem01 red on black.
- * corners shape, original brighter red palette.
+ * sphere shape, brighter red palette.
  */
 export function SiteBackground() {
   return (
