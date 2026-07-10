@@ -1,61 +1,66 @@
 /**
  * LoCoMo results — verified against memory-evals JSON (2026-07-10).
- * Source report: memory-evals/RESULTS.md
- * Harness: mem0ai/memory-benchmarks style LoCoMo-10, non-adversarial only.
+ * Source: memory-evals/RESULTS.md + v02/v03_full_mem01_locomo.json
  */
 
 export type CategoryKey = "1" | "2" | "3" | "4";
 
+/** Grey baseline = v0.2 · accent = v0.3 */
 export const categories: {
   key: CategoryKey;
   label: string;
   short: string;
-  v0: number;
-  v02: number;
-  v0Frac: string;
-  v02Frac: string;
+  /** v0.2 */
+  baseline: number;
+  /** v0.3 */
+  current: number;
+  baselineFrac: string;
+  currentFrac: string;
 }[] = [
   {
     key: "1",
     label: "Multi-hop",
     short: "Multi-hop",
-    v0: 13.8,
-    v02: 83.3,
-    v0Frac: "39/282",
-    v02Frac: "235/282",
+    baseline: 83.3,
+    current: 86.9,
+    baselineFrac: "235/282",
+    currentFrac: "245/282",
   },
   {
     key: "2",
     label: "Temporal",
     short: "Temporal",
-    v0: 39.6,
-    v02: 74.5,
-    v0Frac: "127/321",
-    v02Frac: "239/321",
+    baseline: 74.5,
+    current: 77.9,
+    baselineFrac: "239/321",
+    currentFrac: "250/321",
   },
   {
     key: "3",
     label: "Open-domain",
     short: "Open-domain",
-    v0: 12.5,
-    v02: 74.0,
-    v0Frac: "12/96",
-    v02Frac: "71/96",
+    baseline: 74.0,
+    current: 75.0,
+    baselineFrac: "71/96",
+    currentFrac: "72/96",
   },
   {
     key: "4",
     label: "Single-hop",
     short: "Single-hop",
-    v0: 36.9,
-    v02: 77.9,
-    v0Frac: "310/841",
-    v02Frac: "655/841",
+    baseline: 77.9,
+    current: 80.0,
+    baselineFrac: "655/841",
+    currentFrac: "673/841",
   },
 ];
 
 export const overall = {
-  v0: { pct: 31.7, frac: "488/1540" },
-  v02: { pct: 77.9, frac: "1200/1540" },
+  /** v0.2 */
+  baseline: { pct: 77.9, frac: "1200/1540", label: "v0.2" },
+  /** v0.3 */
+  current: { pct: 80.5, frac: "1240/1540", label: "v0.3" },
+  deltaPts: 2.6,
 };
 
 export const meta = {
@@ -68,8 +73,12 @@ export const meta = {
   judgeModel: "gpt-4o-mini",
   embedModel: "text-embedding-3-small",
   recall: "6,500 tokens · k=150",
-  store: "InMemoryBeliefStore (accuracy focus; latency not claimed)",
-  /** Honest caveat — mem0 published headline uses stronger answer/judge stack */
+  storeV02: "InMemoryBeliefStore (accuracy focus)",
+  storeV03: "Postgres + pgvector (production store shape)",
+  v03Notes:
+    "Multi-signal retrieval (lexical/entity + RRF fusion + MMR), session-level extraction, evidence-aware judging.",
+  v03Telemetry:
+    "Recall p50 442ms / p95 913ms / mean 526ms (includes embedding API); packed context mean 1,252 tokens, max 3,213 (cap 6,500).",
   publishedNote:
     "mem0’s published ~92.5% LoCoMo figure uses a stronger gpt-4o-class answer/judge stack. Our self-run uses gpt-4o-mini throughout for cost and reproducibility.",
   productSuite: {

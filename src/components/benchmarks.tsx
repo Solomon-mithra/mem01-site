@@ -9,10 +9,10 @@ function GrainBar({
   label,
 }: {
   value: number;
-  variant: "v0" | "v02";
+  variant: "baseline" | "current";
   label: string;
 }) {
-  const pct = Math.min(100, Math.max(2, value)); // min 2% so a sliver always shows
+  const pct = Math.min(100, Math.max(2, value));
   return (
     <div className="flex items-center gap-3">
       <span className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-wider text-white/50">
@@ -22,11 +22,10 @@ function GrainBar({
         <div
           className={cn(
             "absolute inset-y-0 left-0",
-            variant === "v02" ? "bg-[#8a1218]" : "bg-[#3a3a3a]",
+            variant === "current" ? "bg-[#8a1218]" : "bg-[#3a3a3a]",
           )}
           style={{ width: `${pct}%`, opacity: 0.85 }}
         >
-          {/* heavy film grain */}
           <div
             className="pointer-events-none absolute inset-0 opacity-70 mix-blend-overlay"
             style={{
@@ -62,34 +61,31 @@ export function Benchmarks() {
           <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
             LoCoMo
             <br />
-            v0 → v0.2
+            v0.2 → v0.3
           </h2>
           <p className="mt-5 text-base leading-relaxed text-white">
-            Self-run on LoCoMo-10 (1,540 questions) with the same open eval
-            style as mem0&apos;s public harness. Same models for extract,
-            answer, and judge:{" "}
+            Self-run on LoCoMo-10 (1,540 questions). Same open eval style as
+            mem0&apos;s public harness. Extract, answer, and judge:{" "}
             <span className="font-mono text-accent">gpt-4o-mini</span>.
           </p>
         </div>
 
-        {/* Overall scores */}
         <div className="mt-12 grid gap-px bg-border sm:grid-cols-2">
           <div className="bg-black/80 p-6 backdrop-blur-sm sm:p-8">
             <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-white/45">
-              v0 · baseline
+              v0.2 · prior
             </p>
             <p className="mt-3 font-mono text-5xl font-bold tabular-nums text-white/40 sm:text-6xl">
-              {overall.v0.pct}
+              {overall.baseline.pct}
               <span className="text-2xl">%</span>
             </p>
             <p className="mt-2 font-mono text-xs text-white/40">
-              {overall.v0.frac} correct
+              {overall.baseline.frac} correct
             </p>
-            {/* overall bar */}
             <div className="mt-5 h-3 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
               <div
                 className="relative h-full bg-[#3a3a3a] opacity-85"
-                style={{ width: `${overall.v0.pct}%` }}
+                style={{ width: `${overall.baseline.pct}%` }}
               >
                 <div
                   className="absolute inset-0 opacity-65 mix-blend-overlay"
@@ -111,19 +107,19 @@ export function Benchmarks() {
             />
             <div className="relative">
               <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-accent">
-                v0.2 · current
+                v0.3 · current
               </p>
               <p className="mt-3 font-mono text-5xl font-bold tabular-nums text-accent sm:text-6xl">
-                {overall.v02.pct}
+                {overall.current.pct}
                 <span className="text-2xl">%</span>
               </p>
               <p className="mt-2 font-mono text-xs text-white/60">
-                {overall.v02.frac} correct · +46.2 pts
+                {overall.current.frac} correct · +{overall.deltaPts} pts
               </p>
               <div className="mt-5 h-3 overflow-hidden rounded-sm border border-accent/20 bg-white/[0.03]">
                 <div
                   className="relative h-full bg-[#8a1218] opacity-90"
-                  style={{ width: `${overall.v02.pct}%` }}
+                  style={{ width: `${overall.current.pct}%` }}
                 >
                   <div
                     className="absolute inset-0 opacity-70 mix-blend-overlay"
@@ -138,7 +134,6 @@ export function Benchmarks() {
           </div>
         </div>
 
-        {/* Per-category charts */}
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
           {categories.map((c) => (
             <div
@@ -154,8 +149,16 @@ export function Benchmarks() {
                 </span>
               </div>
               <div className="space-y-3">
-                <GrainBar value={c.v0} variant="v0" label="v0" />
-                <GrainBar value={c.v02} variant="v02" label="v0.2" />
+                <GrainBar
+                  value={c.baseline}
+                  variant="baseline"
+                  label="v0.2"
+                />
+                <GrainBar
+                  value={c.current}
+                  variant="current"
+                  label="v0.3"
+                />
               </div>
             </div>
           ))}
@@ -163,8 +166,8 @@ export function Benchmarks() {
 
         <div className="mt-8 flex flex-col items-start justify-between gap-4 border border-border bg-black/50 p-5 sm:flex-row sm:items-center sm:p-6">
           <p className="max-w-xl text-sm leading-relaxed text-white/75">
-            Full methodology, models, and caveats on the research page —
-            including why this is not a copy of every published headline number.
+            v0.3 adds multi-signal retrieval (RRF + MMR) on Postgres. Full
+            method, models, telemetry, and caveats on the research page.
           </p>
           <Link
             href="/research/"

@@ -9,7 +9,7 @@ import { categories, overall, meta } from "@/lib/benchmarks";
 export const metadata: Metadata = {
   title: "Research · mem01 LoCoMo",
   description:
-    "LoCoMo self-run methodology, models, category scores, and caveats for mem01 v0 and v0.2.",
+    "LoCoMo self-run methodology: mem01 v0.2 vs v0.3, models, category scores, and caveats.",
 };
 
 function GrainBar({
@@ -17,14 +17,14 @@ function GrainBar({
   variant,
 }: {
   value: number;
-  variant: "v0" | "v02";
+  variant: "baseline" | "current";
 }) {
   const pct = Math.min(100, Math.max(2, value));
   return (
     <div className="relative h-8 flex-1 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
       <div
         className={
-          variant === "v02"
+          variant === "current"
             ? "absolute inset-y-0 left-0 bg-[#8a1218] opacity-85"
             : "absolute inset-y-0 left-0 bg-[#3a3a3a] opacity-85"
         }
@@ -72,12 +72,11 @@ export default function ResearchPage() {
               notes
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-white">
-              What we measured, how we measured it, and what we are not claiming.
-              Numbers verified against the raw result JSON from{" "}
+              v0.2 vs v0.3 on the same LoCoMo-10 set. Numbers verified against
+              result JSON from{" "}
               <span className="font-mono text-sm text-accent">{meta.date}</span>.
             </p>
 
-            {/* Headline */}
             <section className="mt-14 border-t border-border pt-10">
               <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
                 Headline
@@ -85,38 +84,36 @@ export default function ResearchPage() {
               <div className="mt-6 grid gap-px bg-border sm:grid-cols-2">
                 <div className="bg-black/80 p-6">
                   <p className="font-mono text-[10px] uppercase tracking-wider text-white/45">
-                    v0
+                    v0.2
                   </p>
                   <p className="mt-2 font-mono text-4xl font-bold text-white/40">
-                    {overall.v0.pct}%
+                    {overall.baseline.pct}%
                   </p>
                   <p className="mt-1 font-mono text-xs text-white/40">
-                    {overall.v0.frac}
+                    {overall.baseline.frac}
                   </p>
                 </div>
                 <div className="relative overflow-hidden bg-black/80 p-6">
                   <div className="bench-grain pointer-events-none absolute inset-0 opacity-35" />
                   <div className="relative">
                     <p className="font-mono text-[10px] uppercase tracking-wider text-accent">
-                      v0.2
+                      v0.3
                     </p>
                     <p className="mt-2 font-mono text-4xl font-bold text-accent">
-                      {overall.v02.pct}%
+                      {overall.current.pct}%
                     </p>
                     <p className="mt-1 font-mono text-xs text-white/60">
-                      {overall.v02.frac}
+                      {overall.current.frac} · +{overall.deltaPts} pts
                     </p>
                   </div>
                 </div>
               </div>
               <p className="mt-5 text-sm leading-relaxed text-white/80">
-                Same dataset and question set both runs. Jump is methodology
-                parity with the open eval stack plus extractor fixes — not a
-                different dataset.
+                {meta.v03Notes} Same question set and judge stack as v0.2 —
+                not a different dataset.
               </p>
             </section>
 
-            {/* Method */}
             <section className="mt-14 border-t border-border pt-10">
               <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
                 Method
@@ -131,7 +128,8 @@ export default function ResearchPage() {
                   ["Judge", meta.judgeModel],
                   ["Embeddings", meta.embedModel],
                   ["Recall budget", meta.recall],
-                  ["Store", meta.store],
+                  ["v0.2 store", meta.storeV02],
+                  ["v0.3 store", meta.storeV03],
                 ].map(([k, v]) => (
                   <div
                     key={k}
@@ -144,14 +142,26 @@ export default function ResearchPage() {
               </dl>
             </section>
 
-            {/* Categories */}
+            <section className="mt-14 border-t border-border pt-10">
+              <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
+                v0.3 telemetry
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-white/80">
+                {meta.v03Telemetry}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/55">
+                Packed context stays well under the 6,500 cap (mean ~1.3k tokens
+                vs mem0 published mean ~7k) while accuracy moves up — useful for
+                cost, not just score.
+              </p>
+            </section>
+
             <section className="mt-14 border-t border-border pt-10">
               <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
                 By category
               </h2>
               <p className="mt-3 text-sm text-white/70">
-                Grey = v0 · Red = v0.2. Fractions are correct / total in that
-                category.
+                Grey = v0.2 · Red = v0.3.
               </p>
               <div className="mt-8 space-y-6">
                 {categories.map((c) => (
@@ -161,26 +171,26 @@ export default function ResearchPage() {
                         {c.label}
                       </span>
                       <span className="font-mono text-[11px] text-white/45">
-                        v0 {c.v0Frac} · v0.2 {c.v02Frac}
+                        v0.2 {c.baselineFrac} · v0.3 {c.currentFrac}
                       </span>
                     </div>
                     <div className="space-y-2">
                       <div className="flex items-center gap-3">
                         <span className="w-10 font-mono text-[10px] text-white/40">
-                          v0
+                          v0.2
                         </span>
-                        <GrainBar value={c.v0} variant="v0" />
+                        <GrainBar value={c.baseline} variant="baseline" />
                         <span className="w-12 text-right font-mono text-xs text-white/50">
-                          {c.v0}%
+                          {c.baseline}%
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="w-10 font-mono text-[10px] text-accent">
-                          v0.2
+                          v0.3
                         </span>
-                        <GrainBar value={c.v02} variant="v02" />
+                        <GrainBar value={c.current} variant="current" />
                         <span className="w-12 text-right font-mono text-xs text-accent">
-                          {c.v02}%
+                          {c.current}%
                         </span>
                       </div>
                     </div>
@@ -189,25 +199,23 @@ export default function ResearchPage() {
               </div>
             </section>
 
-            {/* Product suite — strength, keep honest */}
             <section className="mt-14 border-t border-border pt-10">
               <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
                 Product suite (our wedge)
               </h2>
               <p className="mt-4 text-base leading-relaxed text-white">
-                On a separate, small harness aimed at staleness and conflict
-                (location update, preference flip, job change, multi-fact, scope
-                isolation):{" "}
-                <span className="text-accent">mem01 {meta.productSuite.mem01}</span>
+                Staleness/conflict harness:{" "}
+                <span className="text-accent">
+                  mem01 {meta.productSuite.mem01}
+                </span>
                 . Same harness, mem0 OSS scored {meta.productSuite.mem0Oss}.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/65">
-                {meta.productSuite.note} This is not LoCoMo; it is the failure
-                mode we optimize for.
+                {meta.productSuite.note} Not LoCoMo — the failure mode we
+                optimize for.
               </p>
             </section>
 
-            {/* Honesty */}
             <section className="mt-14 border-t border-border pt-10">
               <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
                 What we are not claiming
@@ -217,16 +225,17 @@ export default function ResearchPage() {
                   {meta.publishedNote}
                 </li>
                 <li className="border-l-2 border-white/15 pl-4">
-                  Single full run; LLM judge noise is roughly ±2 points on 1,540
-                  questions.
+                  Single full run per version; LLM judge noise is roughly ±2
+                  points on 1,540 questions.
                 </li>
                 <li className="border-l-2 border-white/15 pl-4">
-                  In-memory store for this accuracy run — we do not claim
-                  production latency numbers from it.
+                  Two conversations dipped slightly vs v0.2 while eight improved
+                  — overall still +{overall.deltaPts} pts.
                 </li>
                 <li className="border-l-2 border-white/15 pl-4">
-                  Per-query token/latency telemetry was not recorded for this
-                  run (backlog).
+                  v0.2 used in-memory store; v0.3 used Postgres. Accuracy is
+                  treated as store-independent; latency claims are from the
+                  Postgres path only.
                 </li>
               </ul>
             </section>
@@ -237,9 +246,10 @@ export default function ResearchPage() {
               </p>
               <p className="mt-3 text-base leading-relaxed text-white">
                 Under a fixed, disclosed stack (gpt-4o-mini everywhere), mem01
-                moved from {overall.v0.pct}% → {overall.v02.pct}% on LoCoMo-10.
-                Gains show up across multi-hop, temporal, open-domain, and
-                single-hop. Headline vendor numbers with stronger models are a
+                moved from {overall.baseline.pct}% → {overall.current.pct}% on
+                LoCoMo-10 with multi-signal retrieval and a production store
+                shape. Gains are across all four non-adversarial categories.
+                Stronger published vendor numbers with gpt-4o-class judges are a
                 different comparison — we keep our model choice public.
               </p>
               <Link
