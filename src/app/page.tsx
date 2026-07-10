@@ -16,7 +16,7 @@ export default function Home() {
       <SiteBackground />
       <div className="relative z-10 flex min-h-full flex-1 flex-col">
         <Nav />
-        <main className="flex-1">
+        <main className="flex-1 pt-2">
           <Hero />
           <Problem />
           <Compare />

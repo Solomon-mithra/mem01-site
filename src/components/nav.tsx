@@ -12,8 +12,12 @@ const links = [
 export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-black/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
-        <a href="#" className="flex items-center" aria-label="mem01 home">
+      <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between px-5 sm:px-6">
+        <a
+          href="#"
+          className="group flex items-center transition-opacity hover:opacity-90"
+          aria-label="mem01 home"
+        >
           <Logo size="lg" />
         </a>
 
