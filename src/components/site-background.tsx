@@ -15,7 +15,7 @@ import { GrainGradient } from "@paper-design/shaders-react";
  * Use fit="contain" so scale zooms the sphere clearly (0.3–2.5 works well).
  * Tweak SCALE and hard-refresh if needed.
  */
-const SCALE = 1;
+const SCALE = 0.80;
 
 export function SiteBackground() {
   return (
@@ -30,11 +30,11 @@ export function SiteBackground() {
         fit="contain"
         colors={["#d71921", "#ff4d6a", "#5c0a0e", "#ff8a80"]}
         colorBack="#000000"
-        softness={0.5}
-        intensity={0.5}
-        noise={0.25}
+        softness={0.55}
+        intensity={0.38}
+        noise={0.2}
         shape="sphere"
-        speed={1}
+        speed={0.75}
         scale={SCALE}
         rotation={0}
         offsetX={0}
