@@ -19,14 +19,25 @@ function GrainBar({
   value: number;
   variant: "v0" | "v02";
 }) {
+  const pct = Math.min(100, Math.max(2, value));
   return (
-    <div className="relative h-8 flex-1 overflow-hidden border border-white/10 bg-black/50">
+    <div className="relative h-8 flex-1 overflow-hidden rounded-sm border border-white/15 bg-white/[0.04]">
       <div
         className={
-          variant === "v02" ? "bench-bar bench-bar-v02" : "bench-bar bench-bar-v0"
+          variant === "v02"
+            ? "absolute inset-y-0 left-0 bg-accent"
+            : "absolute inset-y-0 left-0 bg-[#5c5c5c]"
         }
-        style={{ width: `${Math.min(100, value)}%` }}
-      />
+        style={{ width: `${pct}%` }}
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40 mix-blend-soft-light"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 120 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: "80px 40px",
+          }}
+        />
+      </div>
     </div>
   );
 }
