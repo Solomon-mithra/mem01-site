@@ -5,11 +5,28 @@ import { Nav } from "@/components/nav";
 import { SiteBackground } from "@/components/site-background";
 import { Footer } from "@/components/footer";
 import { categories, overall, meta } from "@/lib/benchmarks";
+import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Research · mem01 LoCoMo",
+  title: "LoCoMo Research — AI Agent Memory Benchmarks",
   description:
-    "LoCoMo self-run methodology: mem01 v0.2 vs v0.3, models, category scores, and caveats.",
+    "Self-run LoCoMo results for mem01 agent memory: v0.2 77.9% vs v0.3 80.5% with gpt-4o-mini. Methodology, category scores, multi-signal recall notes, and caveats.",
+  keywords: [
+    "LoCoMo benchmark",
+    "AI agent memory benchmark",
+    "mem01 LoCoMo",
+    "agent memory evaluation",
+    "multi-signal retrieval",
+  ],
+  alternates: {
+    canonical: absoluteUrl("/research/"),
+  },
+  openGraph: {
+    title: "LoCoMo Research — mem01 AI Agent Memory",
+    description:
+      "Self-run LoCoMo: mem01 v0.3 at 80.5% overall with gpt-4o-mini. Full methodology and category scores.",
+    url: absoluteUrl("/research/"),
+  },
 };
 
 function GrainBar({

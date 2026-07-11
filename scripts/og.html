@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #000;
+        color: #fff;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .frame {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: radial-gradient(
+            120% 90% at 80% 20%,
+            rgba(215, 25, 33, 0.22) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            90% 80% at 15% 90%,
+            rgba(215, 25, 33, 0.1) 0%,
+            transparent 50%
+          ),
+          #000;
+      }
+
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.18;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
+
+      .border {
+        position: absolute;
+        inset: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 64px 72px 56px;
+      }
+
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .mark {
+        width: 44px;
+        height: 44px;
+        background: #000;
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 18px;
+        font-weight: 700;
+        color: #d71921;
+      }
+
+      .name {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #333;
+        background: rgba(0, 0, 0, 0.55);
+        padding: 10px 16px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #d71921;
+        box-shadow: 0 0 0 4px rgba(215, 25, 33, 0.2);
+      }
+
+      .main {
+        max-width: 920px;
+      }
+
+      .eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 14px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.88);
+        margin-bottom: 22px;
+      }
+
+      h1 {
+        font-size: 84px;
+        font-weight: 600;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+      }
+
+      h1 .correct {
+        position: relative;
+        display: inline-block;
+      }
+
+      h1 .correct::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        height: 5px;
+        background: #d71921;
+      }
+
+      .sub {
+        margin-top: 28px;
+        max-width: 720px;
+        font-size: 26px;
+        line-height: 1.35;
+        color: rgba(255, 255, 255, 0.88);
+        font-weight: 500;
+      }
+
+      .bottom {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .keywords {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      .stat {
+        text-align: right;
+      }
+
+      .stat-num {
+        font-size: 42px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+
+      .stat-label {
+        margin-top: 8px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="grain"></div>
+      <div class="border"></div>
+      <div class="content">
+        <div class="top">
+          <div class="brand">
+            <div class="mark">01</div>
+            <div class="name">mem01</div>
+          </div>
+          <div class="pill">
+            <span class="dot"></span>
+            Self-hosted · Open source
+          </div>
+        </div>
+
+        <div class="main">
+          <p class="eyebrow">mem01 · agent memory</p>
+          <h1>
+            Memory that<br />
+            stays <span class="correct">correct</span>
+          </h1>
+          <p class="sub">
+            Belief memory for AI agents — supersedes stale facts instead of
+            stacking contradictions.
+          </p>
+        </div>
+
+        <div class="bottom">
+          <p class="keywords">
+            memory for AI agents · self-hosted · LoCoMo 80.5%
+          </p>
+          <div class="stat">
+            <div class="stat-num">80.5%</div>
+            <div class="stat-label">LoCoMo overall · gpt-4o-mini</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

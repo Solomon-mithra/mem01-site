@@ -13,7 +13,7 @@ export function Hero() {
           </div>
 
           <p className="mb-4 font-mono text-[12px] tracking-[0.2em] uppercase text-white/90">
-            mem01 ( agent memory )
+            mem01 · memory for AI agents
           </p>
 
           <h1 className="display-xl text-balance text-[2.75rem] text-white sm:text-6xl md:text-7xl">
@@ -27,8 +27,9 @@ export function Hero() {
           </h1>
 
           <p className="mx-auto mt-7 max-w-xl text-pretty text-base leading-relaxed text-white sm:text-lg">
-            Self-hosted memory for AI agents that updates when the truth
-            changes — so they don&apos;t keep acting on yesterday&apos;s facts.
+            Open-source, self-hosted memory for AI agents that updates when the
+            truth changes — so they don&apos;t keep acting on yesterday&apos;s
+            facts. Built for long-term agent memory that stays correct.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

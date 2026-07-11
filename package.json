@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "export": "GITHUB_PAGES=true npm run build"
+    "export": "GITHUB_PAGES=true npm run build",
+    "og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.77",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "playwright": "^1.61.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

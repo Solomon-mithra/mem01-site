@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
-import { site } from "@/lib/site";
+import { absoluteUrl, site } from "@/lib/site";
+import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -15,21 +16,61 @@ const mono = IBM_Plex_Mono({
   weight: ["400", "500", "700"],
 });
 
+const ogImageUrl = absoluteUrl(site.ogImage.path);
+
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.tagline}`,
+  // Trailing slash so relative paths resolve under /mem01-site/
+  metadataBase: new URL(`${site.url.replace(/\/$/, "")}/`),
+  title: {
+    default: site.title,
+    template: `%s · ${site.name}`,
+  },
   description: site.description,
+  keywords: [...site.keywords],
+  authors: [{ name: "mem01" }],
+  creator: "mem01",
+  publisher: "mem01",
+  applicationName: site.name,
+  category: "technology",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
     type: "website",
+    locale: "en_US",
+    url: absoluteUrl("/"),
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    images: [
+      {
+        url: ogImageUrl,
+        width: site.ogImage.width,
+        height: site.ogImage.height,
+        alt: site.ogImage.alt,
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: site.title,
     description: site.description,
+    images: [ogImageUrl],
   },
 };
 
@@ -50,6 +91,7 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-background text-foreground"
         suppressHydrationWarning
       >
+        <JsonLd />
         {children}
       </body>
     </html>
