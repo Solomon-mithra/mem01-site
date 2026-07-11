@@ -28,6 +28,18 @@ const rows: {
     zep: "partial",
   },
   {
+    feature: "Multi-signal retrieval (vector + lexical / RRF + MMR)",
+    mem01: "yes",
+    mem0: "partial",
+    zep: "partial",
+  },
+  {
+    feature: "History / timeline without polluting default recall",
+    mem01: "yes",
+    mem0: "partial",
+    zep: "yes",
+  },
+  {
     feature: "Token-budgeted context packing",
     mem01: "yes",
     mem0: "yes",
@@ -40,7 +52,7 @@ const rows: {
     zep: "partial",
   },
   {
-    feature: "Light model — no full knowledge graph",
+    feature: "Light model — no full knowledge graph required",
     mem01: "yes",
     mem0: "yes",
     zep: "no",
@@ -94,7 +106,7 @@ export function Compare() {
       className="scroll-mt-20 border-t border-border py-20 sm:py-28"
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl text-on-stage">
           <p className="label">Compare</p>
           <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
             Why mem01

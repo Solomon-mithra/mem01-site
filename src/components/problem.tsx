@@ -23,7 +23,7 @@ export function Problem() {
       className="scroll-mt-20 border-t border-border py-20 sm:py-28"
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl text-on-stage">
           <p className="label">The problem</p>
           <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
             Append-only

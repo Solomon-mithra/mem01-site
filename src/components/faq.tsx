@@ -19,15 +19,19 @@ const faqs = [
   },
   {
     q: "Is recall free of LLM calls?",
-    a: "Yes by default. Recall is embed → search → filter → pack. Writes may call an LLM once per batch for extraction.",
+    a: "Yes. Recall is multi-signal (vector + lexical/entity, RRF, MMR), conflict filter, and pack — no LLM on the hot path. Writes may call an LLM once per batch for extraction.",
   },
   {
     q: "How do you claim better than mem0?",
-    a: "On conflict and staleness — location/job/preference flips — not every public benchmark. Product suite: mem01 5/5 vs mem0 2/5 when old values must not reappear.",
+    a: "On conflict and staleness — location/job/preference flips — not every public benchmark. Product suite: mem01 5/5 vs mem0 2/5 when old values must not reappear. LoCoMo self-runs use gpt-4o-mini throughout; see Research for numbers and caveats.",
   },
   {
     q: "If NY is superseded, is history gone?",
-    a: "No. Default recall is current-only so agents stay correct. For “before SF?” or medical audit, call recall with include_history=true, or POST /v1/history for a full timeline. Past beliefs stay labeled, not mixed in as active truth.",
+    a: "No. Default recall is active-only so agents stay correct. For “before SF?” or audit, call recall with include_history=true, or POST /v1/history for a full timeline. Past beliefs stay labeled, not mixed in as active truth.",
+  },
+  {
+    q: "What is multi-signal retrieval?",
+    a: "v0.3 fuses embedding search with a lexical/entity pass (RRF), then applies MMR diversity before packing. Same zero-LLM constraint — better hit rate when names and exact phrases matter.",
   },
 ];
 
@@ -41,7 +45,7 @@ export function Faq() {
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
-          <div>
+          <div className="text-on-stage">
             <p className="label">FAQ</p>
             <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
               Straight
@@ -79,7 +83,7 @@ export function Faq() {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-5 pb-4 pl-12 text-sm leading-relaxed text-muted">
+                      <p className="px-5 pb-4 pl-12 text-sm leading-relaxed text-white/75">
                         {item.a}
                       </p>
                     </div>

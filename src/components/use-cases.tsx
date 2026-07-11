@@ -46,7 +46,7 @@ export function UseCases() {
       className="scroll-mt-20 border-t border-border py-20 sm:py-28"
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl text-on-stage">
           <p className="label">Use cases</p>
           <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
             Where we have
@@ -71,13 +71,13 @@ export function UseCases() {
               <h3 className="mt-3 text-lg font-medium tracking-tight text-white sm:text-xl">
                 {c.title}
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-white/80">
+              <p className="mt-4 text-sm leading-relaxed text-white/85">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-white/40">
                   Why here ·{" "}
                 </span>
                 {c.leverage}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/70">
+              <p className="mt-3 text-sm leading-relaxed text-white/75">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-accent/80">
                   How mem01 ·{" "}
                 </span>

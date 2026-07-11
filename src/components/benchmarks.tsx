@@ -56,7 +56,7 @@ export function Benchmarks() {
       className="scroll-mt-20 border-t border-border py-20 sm:py-28"
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl text-on-stage">
           <p className="label">Benchmarks</p>
           <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
             LoCoMo
@@ -166,8 +166,9 @@ export function Benchmarks() {
 
         <div className="mt-8 flex flex-col items-start justify-between gap-4 border border-border bg-black/50 p-5 sm:flex-row sm:items-center sm:p-6">
           <p className="max-w-xl text-sm leading-relaxed text-white/75">
-            v0.3 adds multi-signal retrieval (RRF + MMR) on Postgres. Full
-            method, models, telemetry, and caveats on the research page.
+            v0.3: multi-signal retrieval (vector + lexical, RRF + MMR), Postgres
+            store, mean packed ~1.3k tokens under a 6.5k cap. Full method,
+            models, and caveats on Research.
           </p>
           <Link
             href="/research/"

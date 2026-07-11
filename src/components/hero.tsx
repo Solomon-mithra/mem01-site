@@ -6,13 +6,13 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
       <div className="relative mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-8 inline-flex items-center gap-3 border border-border-bright bg-black/50 px-3 py-1.5 font-mono text-[11px] tracking-[0.16em] uppercase text-muted backdrop-blur-sm">
+        <div className="mx-auto max-w-3xl text-center text-on-stage">
+          <div className="mb-8 inline-flex items-center gap-3 border border-border-bright bg-black/60 px-3 py-1.5 font-mono text-[11px] tracking-[0.16em] uppercase text-white/80 backdrop-blur-sm">
             <span className="signal" />
             Self-hosted · Belief memory · Open source
           </div>
 
-          <p className="mb-4 font-mono text-[12px] tracking-[0.2em] uppercase text-white/80">
+          <p className="mb-4 font-mono text-[12px] tracking-[0.2em] uppercase text-white/90">
             mem01 ( agent memory )
           </p>
 
@@ -53,7 +53,7 @@ export function Hero() {
             </a>
           </div>
 
-          <p className="mt-5 font-mono text-[11px] tracking-wide text-white/70">
+          <p className="mt-5 font-mono text-[11px] tracking-wide text-white/85">
             $ {site.dockerOneLiner}
           </p>
         </div>

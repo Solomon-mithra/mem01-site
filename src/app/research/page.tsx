@@ -21,7 +21,7 @@ function GrainBar({
 }) {
   const pct = Math.min(100, Math.max(2, value));
   return (
-    <div className="relative h-8 flex-1 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
+    <div className="relative h-9 flex-1 overflow-hidden rounded-sm border border-white/10 bg-white/[0.03]">
       <div
         className={
           variant === "current"
@@ -55,8 +55,8 @@ export default function ResearchPage() {
       <SiteBackground />
       <div className="relative z-10 flex min-h-full flex-1 flex-col">
         <Nav />
-        <main className="flex-1 pt-24 pb-16">
-          <article className="mx-auto max-w-3xl px-5 sm:px-6">
+        <main className="flex-1 pt-28 pb-20 sm:pt-36 sm:pb-28">
+          <article className="mx-auto max-w-6xl px-5 sm:px-6">
             <Link
               href="/#benchmarks"
               className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white/60 transition hover:text-white"
@@ -65,63 +65,82 @@ export default function ResearchPage() {
               Back to benchmarks
             </Link>
 
-            <p className="label mt-8">Research</p>
-            <h1 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
-              LoCoMo self-run
-              <br />
-              notes
-            </h1>
-            <p className="mt-5 text-lg leading-relaxed text-white">
-              v0.2 vs v0.3 on the same LoCoMo-10 set. Numbers verified against
-              result JSON from{" "}
-              <span className="font-mono text-sm text-accent">{meta.date}</span>.
-            </p>
+            {/* Hero — same scale as main page sections */}
+            <div className="mt-10 max-w-3xl">
+              <p className="label">Research</p>
+              <h1 className="display-xl mt-4 text-4xl text-white sm:text-5xl md:text-6xl">
+                LoCoMo self-run
+                <br />
+                notes
+              </h1>
+              <p className="mt-6 text-lg leading-relaxed text-white sm:text-xl">
+                v0.2 vs v0.3 on the same LoCoMo-10 set. Numbers verified against
+                result JSON from{" "}
+                <span className="font-mono text-base text-accent">
+                  {meta.date}
+                </span>
+                .
+              </p>
+            </div>
 
-            <section className="mt-14 border-t border-border pt-10">
-              <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
-                Headline
+            {/* Headline scores */}
+            <section className="mt-16 border-t border-border pt-14 sm:mt-20 sm:pt-16">
+              <p className="label">Headline</p>
+              <h2 className="display-xl mt-4 text-3xl text-white sm:text-4xl">
+                Overall accuracy
               </h2>
-              <div className="mt-6 grid gap-px bg-border sm:grid-cols-2">
-                <div className="bg-black/80 p-6">
-                  <p className="font-mono text-[10px] uppercase tracking-wider text-white/45">
-                    v0.2
+              <div className="mt-10 grid gap-px bg-border sm:grid-cols-2">
+                <div className="bg-black/80 p-6 sm:p-8">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/45">
+                    v0.2 · prior
                   </p>
-                  <p className="mt-2 font-mono text-4xl font-bold text-white/40">
-                    {overall.baseline.pct}%
+                  <p className="mt-3 font-mono text-5xl font-bold tabular-nums text-white/40 sm:text-6xl">
+                    {overall.baseline.pct}
+                    <span className="text-2xl">%</span>
                   </p>
-                  <p className="mt-1 font-mono text-xs text-white/40">
-                    {overall.baseline.frac}
+                  <p className="mt-2 font-mono text-sm text-white/40">
+                    {overall.baseline.frac} correct
                   </p>
                 </div>
-                <div className="relative overflow-hidden bg-black/80 p-6">
+                <div className="relative overflow-hidden bg-black/80 p-6 sm:p-8">
                   <div className="bench-grain pointer-events-none absolute inset-0 opacity-35" />
                   <div className="relative">
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-accent">
-                      v0.3
+                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
+                      v0.3 · current
                     </p>
-                    <p className="mt-2 font-mono text-4xl font-bold text-accent">
-                      {overall.current.pct}%
+                    <p className="mt-3 font-mono text-5xl font-bold tabular-nums text-accent sm:text-6xl">
+                      {overall.current.pct}
+                      <span className="text-2xl">%</span>
                     </p>
-                    <p className="mt-1 font-mono text-xs text-white/60">
+                    <p className="mt-2 font-mono text-sm text-white/60">
                       {overall.current.frac} · +{overall.deltaPts} pts
                     </p>
                   </div>
                 </div>
               </div>
-              <p className="mt-5 text-sm leading-relaxed text-white/80">
-                {meta.v03Notes} Same question set and judge stack as v0.2 —
-                not a different dataset.
+              <p className="mt-6 max-w-3xl text-base leading-relaxed text-white sm:text-lg">
+                {meta.v03Notes} Same question set and judge stack as v0.2 — not
+                a different dataset.
               </p>
             </section>
 
-            <section className="mt-14 border-t border-border pt-10">
-              <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
-                Method
+            {/* Method */}
+            <section className="mt-16 border-t border-border pt-14 sm:mt-20 sm:pt-16">
+              <p className="label">Method</p>
+              <h2 className="display-xl mt-4 text-3xl text-white sm:text-4xl">
+                How we measured
               </h2>
-              <dl className="mt-6 space-y-4 font-mono text-sm">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-white sm:text-lg">
+                Fixed stack, disclosed end to end — so numbers can be compared
+                fairly across our own releases.
+              </p>
+              <dl className="mt-10 max-w-3xl space-y-0 border border-border">
                 {[
                   ["Dataset", meta.dataset],
-                  ["Questions", `${meta.questions} (adversarial category excluded)`],
+                  [
+                    "Questions",
+                    `${meta.questions} (adversarial category excluded)`,
+                  ],
                   ["Harness", meta.framework],
                   ["Extract", meta.extractModel],
                   ["Answer", meta.answerModel],
@@ -130,66 +149,81 @@ export default function ResearchPage() {
                   ["Recall budget", meta.recall],
                   ["v0.2 store", meta.storeV02],
                   ["v0.3 store", meta.storeV03],
-                ].map(([k, v]) => (
+                ].map(([k, v], i) => (
                   <div
                     key={k}
-                    className="grid gap-1 border-b border-white/5 pb-3 sm:grid-cols-[140px_1fr] sm:gap-4"
+                    className={
+                      i === 0
+                        ? "grid gap-2 border-b border-border bg-black/60 px-5 py-4 sm:grid-cols-[160px_1fr] sm:gap-6 sm:px-6 sm:py-5"
+                        : "grid gap-2 border-b border-border px-5 py-4 last:border-b-0 sm:grid-cols-[160px_1fr] sm:gap-6 sm:px-6 sm:py-5"
+                    }
                   >
-                    <dt className="text-white/45">{k}</dt>
-                    <dd className="text-white">{v}</dd>
+                    <dt className="font-mono text-xs uppercase tracking-[0.12em] text-white/45 sm:text-sm">
+                      {k}
+                    </dt>
+                    <dd className="text-base leading-relaxed text-white sm:text-lg">
+                      {v}
+                    </dd>
                   </div>
                 ))}
               </dl>
             </section>
 
-            <section className="mt-14 border-t border-border pt-10">
-              <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
-                v0.3 telemetry
+            {/* Telemetry */}
+            <section className="mt-16 border-t border-border pt-14 sm:mt-20 sm:pt-16">
+              <p className="label">Telemetry</p>
+              <h2 className="display-xl mt-4 text-3xl text-white sm:text-4xl">
+                v0.3 on Postgres
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-white/80">
+              <p className="mt-5 max-w-3xl text-base leading-relaxed text-white sm:text-lg">
                 {meta.v03Telemetry}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/55">
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/70 sm:text-lg">
                 Packed context stays well under the 6,500 cap (mean ~1.3k tokens
                 vs mem0 published mean ~7k) while accuracy moves up — useful for
                 cost, not just score.
               </p>
             </section>
 
-            <section className="mt-14 border-t border-border pt-10">
-              <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
-                By category
+            {/* Categories */}
+            <section className="mt-16 border-t border-border pt-14 sm:mt-20 sm:pt-16">
+              <p className="label">Categories</p>
+              <h2 className="display-xl mt-4 text-3xl text-white sm:text-4xl">
+                By question type
               </h2>
-              <p className="mt-3 text-sm text-white/70">
+              <p className="mt-5 text-base leading-relaxed text-white sm:text-lg">
                 Grey = v0.2 · Red = v0.3.
               </p>
-              <div className="mt-8 space-y-6">
+              <div className="mt-10 grid gap-6 lg:grid-cols-2">
                 {categories.map((c) => (
-                  <div key={c.key}>
-                    <div className="mb-2 flex flex-wrap items-baseline justify-between gap-2">
-                      <span className="font-mono text-sm text-white">
+                  <div
+                    key={c.key}
+                    className="border border-border bg-black/70 p-5 sm:p-6"
+                  >
+                    <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+                      <h3 className="text-lg font-medium text-white sm:text-xl">
                         {c.label}
-                      </span>
-                      <span className="font-mono text-[11px] text-white/45">
+                      </h3>
+                      <span className="font-mono text-xs text-white/45 sm:text-sm">
                         v0.2 {c.baselineFrac} · v0.3 {c.currentFrac}
                       </span>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <div className="flex items-center gap-3">
-                        <span className="w-10 font-mono text-[10px] text-white/40">
+                        <span className="w-12 font-mono text-xs text-white/40">
                           v0.2
                         </span>
                         <GrainBar value={c.baseline} variant="baseline" />
-                        <span className="w-12 text-right font-mono text-xs text-white/50">
+                        <span className="w-14 text-right font-mono text-sm tabular-nums text-white/50">
                           {c.baseline}%
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="w-10 font-mono text-[10px] text-accent">
+                        <span className="w-12 font-mono text-xs text-accent">
                           v0.3
                         </span>
                         <GrainBar value={c.current} variant="current" />
-                        <span className="w-12 text-right font-mono text-xs text-accent">
+                        <span className="w-14 text-right font-mono text-sm tabular-nums text-accent">
                           {c.current}%
                         </span>
                       </div>
@@ -199,40 +233,46 @@ export default function ResearchPage() {
               </div>
             </section>
 
-            <section className="mt-14 border-t border-border pt-10">
-              <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
-                Product suite (our wedge)
+            {/* Product suite */}
+            <section className="mt-16 border-t border-border pt-14 sm:mt-20 sm:pt-16">
+              <p className="label">Product suite</p>
+              <h2 className="display-xl mt-4 text-3xl text-white sm:text-4xl">
+                Our wedge
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-white">
+              <p className="mt-5 max-w-3xl text-base leading-relaxed text-white sm:text-lg">
                 Staleness/conflict harness:{" "}
                 <span className="text-accent">
                   mem01 {meta.productSuite.mem01}
                 </span>
                 . Same harness, mem0 OSS scored {meta.productSuite.mem0Oss}.
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/65">
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/70 sm:text-lg">
                 {meta.productSuite.note} Not LoCoMo — the failure mode we
                 optimize for.
               </p>
             </section>
 
-            <section className="mt-14 border-t border-border pt-10">
-              <h2 className="font-mono text-sm tracking-[0.12em] uppercase text-accent">
-                What we are not claiming
+            {/* Caveats */}
+            <section className="mt-16 border-t border-border pt-14 sm:mt-20 sm:pt-16">
+              <p className="label">Honesty</p>
+              <h2 className="display-xl mt-4 text-3xl text-white sm:text-4xl">
+                What we are not
+                <br />
+                claiming
               </h2>
-              <ul className="mt-5 space-y-3 text-sm leading-relaxed text-white/80">
-                <li className="border-l-2 border-accent/50 pl-4">
+              <ul className="mt-8 max-w-3xl space-y-5">
+                <li className="border-l-2 border-accent/50 pl-5 text-base leading-relaxed text-white sm:text-lg">
                   {meta.publishedNote}
                 </li>
-                <li className="border-l-2 border-white/15 pl-4">
+                <li className="border-l-2 border-white/15 pl-5 text-base leading-relaxed text-white/85 sm:text-lg">
                   Single full run per version; LLM judge noise is roughly ±2
                   points on 1,540 questions.
                 </li>
-                <li className="border-l-2 border-white/15 pl-4">
+                <li className="border-l-2 border-white/15 pl-5 text-base leading-relaxed text-white/85 sm:text-lg">
                   Two conversations dipped slightly vs v0.2 while eight improved
                   — overall still +{overall.deltaPts} pts.
                 </li>
-                <li className="border-l-2 border-white/15 pl-4">
+                <li className="border-l-2 border-white/15 pl-5 text-base leading-relaxed text-white/85 sm:text-lg">
                   v0.2 used in-memory store; v0.3 used Postgres. Accuracy is
                   treated as store-independent; latency claims are from the
                   Postgres path only.
@@ -240,11 +280,10 @@ export default function ResearchPage() {
               </ul>
             </section>
 
-            <section className="mt-14 border border-border bg-black/60 p-6 sm:p-8">
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50">
-                Bottom line
-              </p>
-              <p className="mt-3 text-base leading-relaxed text-white">
+            {/* Bottom line */}
+            <section className="mt-16 border border-border bg-black/60 px-6 py-10 sm:mt-20 sm:px-10 sm:py-12">
+              <p className="label">Bottom line</p>
+              <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white sm:text-xl">
                 Under a fixed, disclosed stack (gpt-4o-mini everywhere), mem01
                 moved from {overall.baseline.pct}% → {overall.current.pct}% on
                 LoCoMo-10 with multi-signal retrieval and a production store
@@ -254,7 +293,7 @@ export default function ResearchPage() {
               </p>
               <Link
                 href="/#benchmarks"
-                className="mt-6 inline-flex h-11 items-center justify-center gap-2 bg-white px-6 text-[13px] font-semibold uppercase tracking-[0.08em] text-black transition hover:bg-accent"
+                className="mt-8 inline-flex h-12 items-center justify-center gap-2 bg-white px-7 text-[13px] font-semibold uppercase tracking-[0.08em] text-black transition hover:bg-accent"
               >
                 Back to site
               </Link>

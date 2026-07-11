@@ -6,23 +6,23 @@ const features = [
   },
   {
     code: "A2",
-    title: "Zero-LLM recall",
-    body: "Vector search, scope filters, conflict rules, token packer. Fast hot path.",
+    title: "Multi-signal recall",
+    body: "Vector + lexical/entity search, RRF fusion, MMR diversity. Conflict filter + token packer. Still zero LLM on read.",
   },
   {
     code: "A3",
     title: "Token discipline",
-    body: "Budgeted packing keeps memory blocks tight so agents stay cheap.",
+    body: "Budgeted packing keeps memory blocks tight. Eval runs pack far under a 6.5k cap when truth is clean.",
   },
   {
     code: "B1",
-    title: "Postgres + pgvector",
-    body: "Production store in dev and deploy. Neon or any Postgres with vectors.",
+    title: "History when you need it",
+    body: "Default recall is active-only. include_history or POST /v1/history for labeled timelines — past is not erased.",
   },
   {
     code: "B2",
-    title: "Self-hosted first",
-    body: "docker compose up. Your network, your keys, your compliance boundary.",
+    title: "Postgres + pgvector",
+    body: "Production store in dev and deploy. Neon or any Postgres with vectors. Self-hosted first.",
   },
   {
     code: "B3",
@@ -35,7 +35,7 @@ export function Features() {
   return (
     <section className="border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl text-on-stage">
           <p className="label">Product</p>
           <h2 className="display-xl mt-4 text-4xl text-white sm:text-5xl">
             Infrastructure,
@@ -53,7 +53,9 @@ export function Features() {
                 {f.code}
               </span>
               <h3 className="mt-3 text-base font-medium text-white">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{f.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-white/80">
+                {f.body}
+              </p>
             </div>
           ))}
         </div>
