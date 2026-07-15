@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "export": "GITHUB_PAGES=true npm run build",
-    "og": "node scripts/generate-og.mjs"
+    "og": "node scripts/generate-og.mjs",
+    "sync:mem01session-artifact": "node scripts/sync-mem01session-artifact.mjs --sync",
+    "check:mem01session": "node scripts/sync-mem01session-artifact.mjs --check && node scripts/check-mem01session.mjs"
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.77",

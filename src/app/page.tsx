@@ -11,10 +11,12 @@ import { CodeBlock } from "@/components/code-block";
 import { Faq } from "@/components/faq";
 import { Cta } from "@/components/cta";
 import { Footer } from "@/components/footer";
+import { HomeProductJsonLd } from "@/components/json-ld";
 
 export default function Home() {
   return (
     <>
+      <HomeProductJsonLd />
       <SiteBackground />
       <div className="relative z-10 flex min-h-full flex-1 flex-col">
         <Nav />

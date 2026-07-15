@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, Terminal } from "lucide-react";
 import { GitHubIcon } from "@/components/icons";
 import { site } from "@/lib/site";
@@ -31,32 +32,77 @@ export function Hero() {
             truth changes — so they don&apos;t keep acting on yesterday&apos;s
             facts. Built for long-term agent memory that stays correct.
           </p>
+        </div>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href={site.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 w-full items-center justify-center gap-2 bg-white px-7 text-[13px] font-semibold uppercase tracking-[0.08em] text-black transition-colors hover:bg-accent sm:w-auto"
-            >
-              <GitHubIcon className="h-4 w-4 shrink-0" />
-              <span>Start on GitHub</span>
-              <ArrowRight className="h-4 w-4 shrink-0" />
-            </a>
-            <a
-              href={site.docsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 w-full items-center justify-center gap-2 border border-white/25 bg-black/40 px-7 text-[13px] font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-white/5 sm:w-auto"
-            >
-              <Terminal className="h-4 w-4 shrink-0" />
-              <span>Quick start</span>
-            </a>
-          </div>
+        {/* Two-part product split */}
+        <div className="mx-auto mt-12 grid max-w-4xl gap-4 lg:grid-cols-2">
+          <article className="flex flex-col border border-border-bright bg-black/70 p-6 text-left backdrop-blur-md sm:p-7">
+            <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-white/55">
+              Engine · self-hosted
+            </p>
+            <h2 className="mt-3 text-2xl font-medium text-white">mem01</h2>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-white/70">
+              Belief lifecycle, multi-signal recall, and Postgres / pgvector.
+              Run the engine with Docker or call it from Python when you own
+              the agent loop.
+            </p>
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <a
+                href={site.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 items-center justify-center gap-2 border border-white/25 bg-black/40 px-5 text-[12px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
+              >
+                <GitHubIcon className="h-3.5 w-3.5 shrink-0" />
+                <span>Engine on GitHub</span>
+              </a>
+              <a
+                href={site.docsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 items-center justify-center gap-2 border border-white/15 px-5 text-[12px] font-semibold uppercase tracking-[0.08em] text-white/80 transition-colors hover:border-white/40 hover:text-white"
+              >
+                <Terminal className="h-3.5 w-3.5 shrink-0" />
+                <span>Quick start</span>
+              </a>
+            </div>
+            <p className="mt-4 font-mono text-[10px] tracking-wide text-white/50">
+              $ {site.dockerOneLiner}
+            </p>
+          </article>
 
-          <p className="mt-5 font-mono text-[11px] tracking-wide text-white/85">
-            $ {site.dockerOneLiner}
-          </p>
+          <article className="flex flex-col border border-accent/50 bg-black/80 p-6 text-left backdrop-blur-md sm:p-7">
+            <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-accent">
+              Package · OpenAI Agents SDK
+            </p>
+            <h2 className="mt-3 text-2xl font-medium text-white">Mem01Session</h2>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-white/70">
+              One Session object for the Agents SDK: keep each chat separate,
+              recall durable user beliefs across conversations.{" "}
+              <span className="text-white/90">pip install mem01session</span>
+            </p>
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <Link
+                href={site.mem01sessionPath}
+                className="inline-flex h-11 items-center justify-center gap-2 bg-white px-5 text-[12px] font-semibold uppercase tracking-[0.08em] text-black transition-colors hover:bg-accent"
+              >
+                <span>Get started</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0" />
+              </Link>
+              <a
+                href={site.mem01sessionGithubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 items-center justify-center gap-2 border border-white/25 px-5 text-[12px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white/50"
+              >
+                <GitHubIcon className="h-3.5 w-3.5 shrink-0" />
+                <span>Package repo</span>
+              </a>
+            </div>
+            <p className="mt-4 font-mono text-[10px] tracking-wide text-white/50">
+              from mem01session import memSession
+            </p>
+          </article>
         </div>
 
         {/* Dual panel demo */}

@@ -22,13 +22,24 @@ export const site = {
     "Best open-source memory for AI agents when facts change. Self-hosted belief memory that supersedes stale facts instead of stacking contradictions. Docker + Postgres + multi-signal recall.",
   /** Live GitHub Pages URL (includes base path) */
   url: siteUrl,
-  /** Primary CTA — hero + nav */
+  /** Primary CTA — hero + nav (pre-existing engine) */
   githubUrl:
     process.env.NEXT_PUBLIC_GITHUB_URL ??
     "https://github.com/Solomon-mithra/mem01",
   docsUrl:
     process.env.NEXT_PUBLIC_DOCS_URL ??
     "https://github.com/Solomon-mithra/mem01#readme",
+  /** Agents SDK Session product package */
+  mem01sessionPath: "/mem01session/",
+  mem01sessionGithubUrl:
+    process.env.NEXT_PUBLIC_MEM01SESSION_GITHUB_URL ??
+    "https://github.com/Solomon-mithra/mem01session",
+  mem01sessionPypiUrl:
+    process.env.NEXT_PUBLIC_MEM01SESSION_PYPI_URL ??
+    "https://pypi.org/project/mem01session/",
+  mem01EnginePypiUrl:
+    process.env.NEXT_PUBLIC_MEM01_ENGINE_PYPI_URL ??
+    "https://pypi.org/project/mem01-engine/",
   dockerOneLiner: "docker compose up -d --build",
   /** Target queries — metadata keywords + JSON-LD */
   keywords: [

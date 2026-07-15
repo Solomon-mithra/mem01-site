@@ -40,6 +40,33 @@ const faqEntities = [
 ];
 
 export function JsonLd() {
+  const website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    url: absoluteUrl("/"),
+    description: site.description,
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      url: absoluteUrl("/"),
+      logo: absoluteUrl("/icon.svg"),
+    },
+  };
+
+  const organization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: site.name,
+    url: absoluteUrl("/"),
+    sameAs: [site.githubUrl],
+    description: site.tagline,
+  };
+
+  return <JsonLdScripts graphs={[website, organization]} />;
+}
+
+export function HomeProductJsonLd() {
   const software = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -66,29 +93,6 @@ export function JsonLd() {
     ],
   };
 
-  const website = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: site.name,
-    url: absoluteUrl("/"),
-    description: site.description,
-    publisher: {
-      "@type": "Organization",
-      name: site.name,
-      url: absoluteUrl("/"),
-      logo: absoluteUrl("/icon.svg"),
-    },
-  };
-
-  const organization = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    url: absoluteUrl("/"),
-    sameAs: [site.githubUrl],
-    description: site.tagline,
-  };
-
   const faq = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -102,8 +106,10 @@ export function JsonLd() {
     })),
   };
 
-  const graphs = [software, website, organization, faq];
+  return <JsonLdScripts graphs={[software, faq]} />;
+}
 
+function JsonLdScripts({ graphs }: { graphs: Array<Record<string, unknown>> }) {
   return (
     <>
       {graphs.map((data, i) => (
